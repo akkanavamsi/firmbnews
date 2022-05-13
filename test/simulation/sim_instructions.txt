@@ -1,0 +1,19 @@
+device PIC32MZ2048EFM144
+hwtool sim
+set oscillator.frequency        8
+set oscillator.frequencyunit    Mega
+set oscillator.rcfrequency      250
+set oscillator.rcfrequencyunit  Kilo
+set uart2io.uartioenabled       true
+set uart2io.output              stdout
+#set uart2io.outputfile         test/simulation/test.txt
+
+Program ./build/test/test_build.elf
+
+Reset
+Sleep 500
+Break UnityHelper.c:5
+
+Run
+Wait 360000
+Quit
